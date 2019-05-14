@@ -1,25 +1,28 @@
 import React from "react";
 import { Card, Paper } from "@material-ui/core";
-import VacancyLabel from "./VacancyLabel/VacancyLabel";
 import VacancyContent from "./VacancyContent/VacancyContent";
 import styled from "styled-components";
+import VacancyHeader from "./VacancyHeader/VacancyHeader";
 
 const VacancyCard = props => {
   // Получение параметров для карточки
-  const { name, responsibility, requirement } = props;
+  const { requirement, responsibility, companyLogo, ...header } = props;
 
   return (
-    <StyledPaper>
-      <Card>
-        {/* Заголовок вакансии */}
-        <VacancyLabel name={name} />
-        {/* Содержимое карточки */}
-        <VacancyContent
-          responsibility={responsibility}
-          requirement={requirement}
-        />
-      </Card>
-    </StyledPaper>
+    <li>
+      <StyledPaper>
+        <Card>
+          {/* Заголовок вакансии */}
+          <VacancyHeader {...header} />
+          {/* Содержимое карточки */}
+          <VacancyContent
+            responsibility={responsibility}
+            requirement={requirement}
+            companyLogo={companyLogo}
+          />
+        </Card>
+      </StyledPaper>
+    </li>
   );
 };
 

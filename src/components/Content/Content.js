@@ -1,9 +1,16 @@
 import React from "react";
-import VacancyListContainer from "./VacancyListContainer/VacancyListContainer";
+import { DataConsumer } from "utils/context";
+import VacancyList from "./VacancyList/VacancyList";
 
 const Content = () => {
-  /* Возвращает контейнер для представления вакансий */
-  return <VacancyListContainer />;
+  /* Cписок вакансий */
+  return (
+    <DataConsumer>
+      {({ itemsCollection }) => (
+        <VacancyList itemsCollection={itemsCollection} />
+      )}
+    </DataConsumer>
+  );
 };
 
 export default Content;
