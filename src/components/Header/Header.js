@@ -17,7 +17,6 @@ const Header = props => {
 
 export default Header;
 
-// Стилизация Header
 const StyledBar = styled(AppBar)`
   && {
     background-color: ${props => props.theme.palette.primary.main};
