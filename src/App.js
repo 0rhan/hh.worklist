@@ -9,7 +9,8 @@ import hhRequest from "utils/hhRequest";
 
 class AppContainer extends Component {
   state = {
-    itemsCollection: []
+    itemsCollection: [],
+    loading: true
   };
 
   async componentDidMount() {
@@ -20,20 +21,22 @@ class AppContainer extends Component {
 
     // Запись коллекции вакансий в состояние
     this.setState({
-      itemsCollection: items
+      itemsCollection: items,
+      loading: false
     });
   }
 
   render() {
     // Извлечение коллекции из состояния
-    const itemsCollection = this.state.itemsCollection;
+    const { itemsCollection, loading } = this.state;
 
     // Передача коллекции в компонент представления вакансий
     return (
       <>
         <DataProvider
           value={{
-            itemsCollection: itemsCollection
+            itemsCollection: itemsCollection,
+            loading: loading
           }}
         >
           <GlobalStyle />
