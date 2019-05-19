@@ -8,14 +8,14 @@ const Content = () => {
   /* Cписок вакансий */
   return (
     <DataConsumer>
-      {({ itemsCollection, loading }) =>
+      {({ vacancyCollection, loading }) =>
         // Отображать загрузку пока коллекция не будет загружена
         loading ? (
           // Анимация загрузки
           <Loader size={50} />
         ) : (
           // Вакансии
-          <VacancyList itemsCollection={itemsCollection} />
+          <VacancyList vacancyCollection={vacancyCollection} />
         )
       }
     </DataConsumer>

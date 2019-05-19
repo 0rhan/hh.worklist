@@ -5,37 +5,35 @@ import GlobalStyle from "utils/styles/GlobalStyle";
 import { DataProvider } from "utils/context";
 import hhRequest from "utils/hhRequest";
 
-//Контейнер для представления вакансий
-
 class AppContainer extends Component {
   state = {
-    itemsCollection: [],
+    vacancyCollection: [],
+    // Состояние загрузки
     loading: true
   };
 
   async componentDidMount() {
     // Получение данных из запроса
-    const {
-      data: { items }
-    } = await hhRequest.get();
+    const { data } = await hhRequest.get();
 
     // Запись коллекции вакансий в состояние
     this.setState({
-      itemsCollection: items,
+      vacancyCollection: data,
       loading: false
     });
   }
 
   render() {
     // Извлечение коллекции из состояния
-    const { itemsCollection, loading } = this.state;
+    const { vacancyCollection, loading } = this.state;
+    console.log(vacancyCollection);
 
     // Передача коллекции в компонент представления вакансий
     return (
       <>
         <DataProvider
           value={{
-            itemsCollection: itemsCollection,
+            vacancyCollection: vacancyCollection,
             loading: loading
           }}
         >
