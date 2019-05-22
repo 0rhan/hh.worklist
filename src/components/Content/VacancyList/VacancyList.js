@@ -1,5 +1,5 @@
 import React from "react";
-import VacancyCard from "../VacancyCard/VacancyCard";
+import MiniCard from "../VacancyCard/MiniCard/MiniCard";
 import styled from "styled-components";
 
 // Представление вакансий
@@ -25,7 +25,7 @@ const VacancyList = props => {
     } = item;
 
     return (
-      <VacancyCard
+      <MiniCard
         // Название вакансии
         name={name}
         // Требования

@@ -1,11 +1,11 @@
 import React from "react";
 import CardHeader from "@material-ui/core/CardHeader";
 import styled from "styled-components";
-import Company from "./Company/Company";
+import Company from "../../Company/Company";
 import Location from "./Location/Location";
 import Salary from "./Salary/Salary";
 
-const VacancyHeader = props => {
+const MiniCardHeader = props => {
   const { name, city, min, max, currency, companyName, verification } = props;
   return (
     // Контейнер
@@ -26,7 +26,7 @@ const VacancyHeader = props => {
   );
 };
 
-export default VacancyHeader;
+export default MiniCardHeader;
 
 const HeaderContainer = styled.div`
   padding: 16px;

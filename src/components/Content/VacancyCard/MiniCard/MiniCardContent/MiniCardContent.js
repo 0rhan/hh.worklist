@@ -2,7 +2,7 @@ import React from "react";
 import { CardContent, Divider, Typography } from "@material-ui/core";
 import styled from "styled-components";
 
-const VacancyContent = props => {
+const MiniCardContent = props => {
   const { responsibility, requirement, companyLogo } = props;
   const def = "Не указано";
   return (
@@ -32,7 +32,7 @@ const VacancyContent = props => {
   );
 };
 
-export default VacancyContent;
+export default MiniCardContent;
 
 const StyledContent = styled(CardContent)`
   display: flex;

@@ -3,30 +3,44 @@ import Header from "components/Header/Header";
 import Content from "components/Content/Content";
 import GlobalStyle from "utils/styles/GlobalStyle";
 import { DataProvider } from "utils/context";
-import hhRequest from "utils/hhRequest";
+import transformVacancies from "utils/transformVacancies";
+import hhReq from "api/hhReq";
 
 class AppContainer extends Component {
   state = {
     vacancyCollection: [],
     // Состояние загрузки
-    loading: true
+    loading: true,
+    // Id активной вакансии для подробного просмотра
+    activeVacancyId: ""
   };
 
-  async componentDidMount() {
-    // Получение данных из запроса
-    const { data } = await hhRequest.get();
-
+  //  Запрос на получение коллекции вакансий
+  async getVacancies() {
+    const {
+      data: { items }
+    } = await hhReq.get("vacancies");
+    const vacancyCollection = transformVacancies(items);
     // Запись коллекции вакансий в состояние
     this.setState({
-      vacancyCollection: data,
+      vacancyCollection: vacancyCollection,
       loading: false
     });
   }
 
+  // Получение id активной для просмотра вакансии
+  handleActiveVacancy = id => () => {
+    this.setState({
+      activeVacancyId: id
+    });
+  };
+
+  componentDidMount() {
+    this.getVacancies();
+  }
+
   render() {
-    // Извлечение коллекции из состояния
-    const { vacancyCollection, loading } = this.state;
-    console.log(vacancyCollection);
+    const { vacancyCollection, loading, activeVacancyId } = this.state;
 
     // Передача коллекции в компонент представления вакансий
     return (
@@ -34,7 +48,9 @@ class AppContainer extends Component {
         <DataProvider
           value={{
             vacancyCollection: vacancyCollection,
-            loading: loading
+            loading: loading,
+            activeVacancyId: activeVacancyId,
+            handleActiveVacancy: this.handleActiveVacancy
           }}
         >
           <GlobalStyle />
