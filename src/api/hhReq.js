@@ -1,10 +1,9 @@
 import axios from "axios";
 
 // Конфигурация axios
-const hhRequest = axios.create({
+const hhReq = axios.create({
   // Базовая ссылка
-  // Запрос на вакансии
-  baseURL: "https://api.hh.ru/vacancies",
+  baseURL: "https://api.hh.ru/",
   // Формат ответа
   responseType: "json",
   // Параметры
@@ -14,4 +13,4 @@ const hhRequest = axios.create({
   }
 });
 
-export default hhRequest;
+export default hhReq;

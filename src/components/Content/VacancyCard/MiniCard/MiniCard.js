@@ -1,32 +1,34 @@
 import React from "react";
 import { Card, Paper } from "@material-ui/core";
-import VacancyContent from "./VacancyContent/VacancyContent";
+import MiniCardHeader from "./MiniCardHeader/MiniCardHeader";
+import MiniCardContent from "./MiniCardContent/MiniCardContent";
+import MiniCardFooter from "./MiniCardFooter/MiniCardFooter";
 import styled from "styled-components";
-import VacancyHeader from "./VacancyHeader/VacancyHeader";
 
-const VacancyCard = props => {
+const MiniCard = props => {
   // Получение параметров для карточки
-  const { requirement, responsibility, companyLogo, ...header } = props;
+  const { requirement, responsibility, companyLogo, id, ...header } = props;
 
   return (
     <li>
       <StyledPaper>
         <Card>
           {/* Заголовок вакансии */}
-          <VacancyHeader {...header} />
+          <MiniCardHeader {...header} />
           {/* Содержимое карточки */}
-          <VacancyContent
+          <MiniCardContent
             responsibility={responsibility}
             requirement={requirement}
             companyLogo={companyLogo}
           />
+          <MiniCardFooter id={id} />
         </Card>
       </StyledPaper>
     </li>
   );
 };
 
-export default VacancyCard;
+export default MiniCard;
 
 const StyledPaper = styled(Paper)`
   margin-top: 20px;

@@ -1,41 +1,31 @@
 import React from "react";
-import VacancyCard from "../VacancyCard/VacancyCard";
+import MiniCard from "../VacancyCard/MiniCard/MiniCard";
 import styled from "styled-components";
 
 // Представление вакансий
 
 const VacancyList = props => {
   // Извлечение коллекции вакансий
-  const { itemsCollection } = props;
+  const { vacancyCollection } = props;
 
   // Перебор и передача нужных параметров в карточку вакансии
-  const items = itemsCollection.map(item => {
-    const { id, name, snippet, address, salary, employer } = item;
-
-    // Проверка полей
-    // Поля объекта snippet
-    const requirement = snippet.requirement;
-    const responsibility = snippet.responsibility;
-
-    // Поля объекта address
-    // const { city } = item.address || {};
-    const city = address && address.city;
-    const street = address && address.street;
-    const building = address && address.building;
-
-    // Поля объекта salary
-    const min = salary && salary.from;
-    const max = salary && salary.to;
-    const currency = salary && salary.currency;
-    const gross = salary && salary.gross;
-
-    // Поля объекта employer
-    const companyName = employer.name;
-    const verification = employer.trusted;
-    const companyLogo = employer.logo_urls && employer.logo_urls[90];
+  const items = vacancyCollection.map(item => {
+    const {
+      id,
+      name,
+      requirement,
+      responsibility,
+      city,
+      min,
+      max,
+      currency,
+      companyName,
+      verification,
+      companyLogo
+    } = item;
 
     return (
-      <VacancyCard
+      <MiniCard
         // Название вакансии
         name={name}
         // Требования
@@ -45,9 +35,9 @@ const VacancyList = props => {
         // Город
         city={city}
         // Улица
-        street={street}
+        // street={street}
         // Дом
-        building={building}
+        // building={building}
         // Минимальная оплата
         min={min}
         // Максимальная оплата
@@ -55,7 +45,7 @@ const VacancyList = props => {
         // Валюта
         currency={currency}
         // Налоги (bool)
-        gross={gross}
+        // gross={gross}
         // Название компании
         companyName={companyName}
         // Верификация компании (bool)
@@ -63,6 +53,8 @@ const VacancyList = props => {
         //Логотип компании
         companyLogo={companyLogo}
         // Идентификатор вакансии
+        id={id}
+        // key
         key={id}
       />
     );

@@ -1,15 +1,15 @@
 import React from "react";
 import SearchBar from "./SearchBar/SearchBar";
-import SelectSorting from "./SelectSorting/SelectSorting";
+// import SelectSorting from "./SelectSorting/SelectSorting";
+// import SelectFilter from "./SeletFilter/SelectFilter";
 import styled from "styled-components";
-import SelectFilter from "./SeletFilter/SelectFilter";
 
 const ToolsForm = () => {
   return (
     <StyledForm autoComplete="off">
       <SearchBar />
-      <SelectSorting />
-      <SelectFilter />
+      {/* <SelectSorting /> */}
+      {/* <SelectFilter /> */}
     </StyledForm>
   );
 };
