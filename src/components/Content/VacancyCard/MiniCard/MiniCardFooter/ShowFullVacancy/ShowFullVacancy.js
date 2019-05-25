@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import { DataConsumer } from "utils/context";
+import Button from "@material-ui/core/Button";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
+import { DataConsumer } from "utils/context";
 import styled from "styled-components";
 
 const ShowFullVacancy = props => {
