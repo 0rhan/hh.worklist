@@ -17,10 +17,18 @@ class AppContainer extends Component {
 
   //  Запрос на получение коллекции вакансий
   async getVacancies() {
+    // Запрос на вакансии
     const {
       data: { items }
-    } = await hhReq.get("vacancies");
+    } = await hhReq.get("vacancies", {
+      params: {
+        per_page: 50
+      }
+    });
+
+    // Преобразование коллекции
     const vacancyCollection = transformVacancies(items);
+
     // Запись коллекции вакансий в состояние
     this.setState({
       vacancyCollection: vacancyCollection,
