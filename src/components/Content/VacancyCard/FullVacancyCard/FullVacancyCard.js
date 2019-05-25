@@ -3,26 +3,65 @@ import { Card } from "@material-ui/core";
 import FullCardHeader from "./FullCardHeader/FullCardHeader";
 import BackButton from "./BackButton/BackButton";
 import styled from "styled-components";
-import filterVacancy from "../../../../utils/filterVacancy";
+import FullCardContent from "./FullCardContent/FullCardContent";
 
 const FullVacancyCard = props => {
-  const { vacancyCollection, activeVacancyId } = props;
-  const vacancy = filterVacancy(vacancyCollection, activeVacancyId);
-  const { name, companyName, verification } = vacancy;
+  const { vacancyData } = props;
+  const {
+    name,
+    description,
+    // key_skills,
+    // schedule,
+    // accept_handicapped,
+    // accept_kids,
+    experience,
+    city,
+    street,
+    building,
+    // employment,
+    min,
+    max,
+    currency,
+    gross,
+    companyName,
+    companyLogo,
+    verification
+    // contactName,
+    // contactEmail,
+    // contactPhones
+  } = vacancyData;
   return (
-    <StyledCard>
+    <Container>
       <BackButton />
-      <FullCardHeader
-        name={name}
-        companyName={companyName}
-        verification={verification}
-      />
-    </StyledCard>
+      <StyledCard>
+        <FullCardHeader
+          name={name}
+          companyName={companyName}
+          verification={verification}
+          city={city}
+          street={street}
+          building={building}
+          min={min}
+          max={max}
+          currency={currency}
+          gross={gross}
+          companyLogo={companyLogo}
+          experience={experience}
+        />
+        <FullCardContent htmlDescription={description} />
+      </StyledCard>
+    </Container>
   );
 };
 
 export default FullVacancyCard;
 
-const StyledCard = styled(Card)`
+const Container = styled.div`
   margin-top: 85px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledCard = styled(Card)`
+  margin-top: 10px;
 `;

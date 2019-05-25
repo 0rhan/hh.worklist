@@ -4,12 +4,14 @@ import Typography from "@material-ui/core/Typography";
 import Check from "@material-ui/icons/Check";
 
 const Company = props => {
-  const { companyName, verification } = props;
+  const { companyName, verification, component, variant } = props;
 
   return (
     <Container>
       {/* Название компании */}
-      <StyledTypo>{companyName}</StyledTypo>
+      <StyledTypo component={component} variant={variant}>
+        {companyName}
+      </StyledTypo>
       {/* Статус верификации компании */}
       {verification && <StyledCheck fontSize="small" />}
     </Container>

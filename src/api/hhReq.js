@@ -6,11 +6,7 @@ const hhReq = axios.create({
   baseURL: "https://api.hh.ru/",
   // Формат ответа
   responseType: "json",
-  // Параметры
-  params: {
-    // Ограничение результата в 50 вакансий
-    per_page: 50
-  }
+
 });
 
 export default hhReq;

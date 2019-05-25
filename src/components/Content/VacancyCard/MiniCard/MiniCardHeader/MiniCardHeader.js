@@ -3,7 +3,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import styled from "styled-components";
 import Company from "../../Company/Company";
 import Location from "./Location/Location";
-import Salary from "./Salary/Salary";
+import Salary from "../../Salary/Salary";
 
 const MiniCardHeader = props => {
   const { name, city, min, max, currency, companyName, verification } = props;
