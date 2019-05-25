@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const BackButton = () => {
