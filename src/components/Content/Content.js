@@ -1,6 +1,6 @@
 import React from "react";
 import { DataConsumer } from "utils/context";
-import VacancyList from "./VacancyList/VacancyList";
+import VacancyListContainer from "../../containers/VacancyListContainer";
 import { Route, Switch } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import FullCardContainer from "containers/FullCardContianer";
@@ -10,7 +10,7 @@ const Content = () => {
   /* Cписок вакансий */
   return (
     <DataConsumer>
-      {({ vacancyCollection, loading, activeVacancyId }) => {
+      {({ vacancyCollection, itemsToShow, loading, activeVacancyId }) => {
         // Отображать загрузку пока коллекция не будет загружена
 
         // Анимация загрузки
@@ -26,7 +26,10 @@ const Content = () => {
               exact
               path="/"
               render={props => (
-                <VacancyList vacancyCollection={vacancyCollection} />
+                <VacancyListContainer
+                  vacancyCollection={vacancyCollection}
+                  itemsToShow={itemsToShow}
+                />
               )}
             />
             {/* Карточка с полной информацией о вакансии */}

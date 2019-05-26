@@ -8,7 +8,10 @@ import hhReq from "api/hhReq";
 
 class AppContainer extends Component {
   state = {
+    // Коллекция вакансий
     vacancyCollection: [],
+    // Сколько вакансий показывать изначально
+    itemsToShow: 5,
     // Состояние загрузки
     loading: true,
     // Id активной вакансии для подробного просмотра
@@ -48,7 +51,12 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { vacancyCollection, loading, activeVacancyId } = this.state;
+    const {
+      vacancyCollection,
+      itemsToShow,
+      loading,
+      activeVacancyId
+    } = this.state;
 
     // Передача коллекции в компонент представления вакансий
     return (
@@ -56,6 +64,7 @@ class AppContainer extends Component {
         <DataProvider
           value={{
             vacancyCollection: vacancyCollection,
+            itemsToShow: itemsToShow,
             loading: loading,
             activeVacancyId: activeVacancyId,
             handleActiveVacancy: this.handleActiveVacancy
