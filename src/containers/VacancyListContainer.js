@@ -28,9 +28,6 @@ class VacancyListContainer extends Component {
     const { vacancyCollection } = this.props;
 
     const maxItems = vacancyCollection.length;
-    console.log(maxItems);
-    console.log(itemsToShow);
-    console.log(itemsToShow === maxItems);
 
     let showMore;
 
@@ -56,7 +53,6 @@ class VacancyListContainer extends Component {
         }));
       }
     );
-    console.log(mainCollection);
   };
 
   render() {

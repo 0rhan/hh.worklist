@@ -1,18 +1,44 @@
-import React from "react";
+import React, { Component } from "react";
 import SearchBar from "./SearchBar/SearchBar";
-// import SelectSorting from "./SelectSorting/SelectSorting";
-// import SelectFilter from "./SeletFilter/SelectFilter";
 import styled from "styled-components";
+import { DataConsumer } from "utils/context";
 
-const ToolsForm = () => {
-  return (
-    <StyledForm autoComplete="off">
-      <SearchBar />
-      {/* <SelectSorting /> */}
-      {/* <SelectFilter /> */}
-    </StyledForm>
-  );
-};
+class ToolsForm extends Component {
+  state = {
+    searchStr: ""
+  };
+
+  handleInput = event => {
+    const {
+      target: { value }
+    } = event;
+    this.setState({
+      searchStr: value
+    });
+  };
+
+  render() {
+    const { searchStr } = this.state;
+    return (
+      <DataConsumer>
+        {({ searchVacancies }) => {
+          return (
+            <StyledForm
+              autoComplete="off"
+              onSubmit={event => searchVacancies(searchStr, event)}
+            >
+              <SearchBar
+                handleInput={this.handleInput}
+                searchVacancies={searchVacancies}
+                searchStr={searchStr}
+              />
+            </StyledForm>
+          );
+        }}
+      </DataConsumer>
+    );
+  }
+}
 
 export default ToolsForm;
 

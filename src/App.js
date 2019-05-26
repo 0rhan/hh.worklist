@@ -46,6 +46,32 @@ class AppContainer extends Component {
     });
   };
 
+  // Поиск вакансий по запросу
+  searchVacancies = (str, event) => {
+    event.preventDefault();
+    const getSearch = async str => {
+      const {
+        data: { items }
+      } = await hhReq.get("vacancies/", {
+        params: {
+          per_page: 50,
+          text: str
+        }
+      });
+      const vacancyCollection = transformVacancies(items);
+      this.setState({
+        vacancyCollection: vacancyCollection,
+        loading: false
+      });
+    };
+
+    this.setState({
+      loading: true
+    });
+
+    getSearch(str);
+  };
+
   componentDidMount() {
     this.getVacancies();
   }
@@ -67,7 +93,8 @@ class AppContainer extends Component {
             itemsToShow: itemsToShow,
             loading: loading,
             activeVacancyId: activeVacancyId,
-            handleActiveVacancy: this.handleActiveVacancy
+            handleActiveVacancy: this.handleActiveVacancy,
+            searchVacancies: this.searchVacancies
           }}
         >
           <GlobalStyle />
