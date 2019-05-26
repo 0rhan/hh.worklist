@@ -1,15 +1,10 @@
 import React from "react";
-import MiniCard from "../VacancyCard/MiniCard/MiniCard";
-import styled from "styled-components";
-
-// Представление вакансий
+import MiniCardContainer from "containers/MiniCardContainer";
 
 const VacancyList = props => {
-  // Извлечение коллекции вакансий
-  const { vacancyCollection } = props;
-
+  const { mainCollection } = props;
   // Перебор и передача нужных параметров в карточку вакансии
-  const items = vacancyCollection.map(item => {
+  const items = mainCollection.map(item => {
     const {
       id,
       name,
@@ -25,7 +20,7 @@ const VacancyList = props => {
     } = item;
 
     return (
-      <MiniCard
+      <MiniCardContainer
         // Название вакансии
         name={name}
         // Требования
@@ -59,15 +54,7 @@ const VacancyList = props => {
       />
     );
   });
-
-  // Контейнер для списка вакансий
-  return <StyledList>{items}</StyledList>;
+  return items;
 };
 
 export default VacancyList;
-
-const StyledList = styled.ul`
-  margin-top: 85px;
-  padding: 0px;
-  list-style-type: none;
-`;
