@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import ShowMore from "../components/Content/VacancyList/ShowMore/ShowMore";
+import ShowMore from "components/Content/VacancyList/ShowMore/ShowMore";
 import VacancyList from "components/Content/VacancyList/VacancyList";
 
 // Представление вакансий
@@ -21,42 +21,31 @@ class VacancyListContainer extends Component {
 
   // Показать больше вакансий
   showMore = () => {
-    const { mainCollection, itemsToShow } = this.state;
-
-    const mainLastIndex = mainCollection.length;
+    const { itemsToShow } = this.state;
 
     const { vacancyCollection } = this.props;
 
+    // Увеличть кол-во показываемых элементов
+    const showMore = itemsToShow + 5;
+
+    // Максимальное кол-во элементов
     const maxItems = vacancyCollection.length;
-    console.log(maxItems);
-    console.log(itemsToShow);
-    console.log(itemsToShow === maxItems);
 
-    let showMore;
+    // Извлечь нужное кол-во элементов
+    const newCollection = vacancyCollection.slice(0, showMore);
 
-    if (itemsToShow < maxItems) {
-      showMore = itemsToShow + 5;
+    // Пока не достигнуто максимальное кол-во элементов
+    if (showMore !== maxItems) {
+      this.setState({
+        mainCollection: newCollection,
+        itemsToShow: showMore
+      });
     } else {
+      // Если достигнуто убрать кнопку
       this.setState({
         collectionEnd: true
       });
     }
-
-    this.setState(
-      {
-        itemsToShow: showMore
-      },
-      () => {
-        const collectionNewPart = vacancyCollection.slice(
-          mainLastIndex,
-          showMore
-        );
-        this.setState(prevState => ({
-          mainCollection: [...prevState.mainCollection, ...collectionNewPart]
-        }));
-      }
-    );
-    console.log(mainCollection);
   };
 
   render() {

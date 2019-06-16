@@ -1,19 +1,27 @@
 import React, { Component } from "react";
+import { VACANCIES_URL } from "api/constants";
 import FullVacancyCard from "components/Content/VacancyCard/FullVacancyCard/FullVacancyCard";
-import hhReq from "api/hhReq";
 import transformOne from "utils/transformOne";
+import Loader from "components/Loader/Loader";
+import fetchData from "api/fetchData";
 
 class FullCardContainer extends Component {
   state = {
-    vacancyData: {}
+    vacancyData: {},
+    loading: true
   };
 
   async getVacancy() {
     const { activeVacancyId: vacancyId } = this.props;
-    const response = await hhReq.get(`vacancies/${vacancyId}`);
+
+    const url = `${VACANCIES_URL}/${vacancyId}`;
+
+    const response = await fetchData(url);
+
     const vacancyData = transformOne(response);
     this.setState({
-      vacancyData: vacancyData
+      vacancyData: vacancyData,
+      loading: false
     });
   }
 
@@ -22,9 +30,13 @@ class FullCardContainer extends Component {
   }
 
   render() {
-    const { vacancyData } = this.state;
+    const { vacancyData, loading } = this.state;
 
-    return <FullVacancyCard vacancyData={vacancyData} />;
+    return (
+      <>
+        {loading ? <Loader /> : <FullVacancyCard vacancyData={vacancyData} />}
+      </>
+    );
   }
 }
 

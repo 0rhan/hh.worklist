@@ -1,42 +1,40 @@
 const transformOne = vacancyData => {
   const {
-    data: {
-      // Название вакансии
-      name,
+    // Название вакансии
+    name,
 
-      // Описание вакансии
-      description,
+    // Описание вакансии
+    description,
 
-      // Навыки
-      key_skills,
+    // Навыки
+    key_skills,
 
-      // Расписание
-      schedule,
+    // Расписание
+    schedule,
 
-      // Доступность для людей с инвалидностью
-      accept_handicapped,
+    // Доступность для людей с инвалидностью
+    accept_handicapped,
 
-      // Доступность для детей
-      accept_kids,
+    // Доступность для детей
+    accept_kids,
 
-      // Опыт
-      experience: { name: experience },
+    // Опыт
+    experience: { name: experience },
 
-      // Адрес
-      address,
+    // Адрес
+    address,
 
-      // Тип занятости
-      employment,
+    // Тип занятости
+    employment,
 
-      // Оплата
-      salary,
+    // Оплата
+    salary,
 
-      // Информация о компании
-      employer,
+    // Информация о компании
+    employer,
 
-      // Контакты
-      contacts
-    }
+    // Контакты
+    contacts
   } = vacancyData;
 
   // Проверка объектов

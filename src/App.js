@@ -3,8 +3,9 @@ import Header from "components/Header/Header";
 import Content from "components/Content/Content";
 import GlobalStyle from "utils/styles/GlobalStyle";
 import { DataProvider } from "utils/context";
+import { VACANCIES_URL } from "api/constants";
 import transformVacancies from "utils/transformVacancies";
-import hhReq from "api/hhReq";
+import fetchData from "api/fetchData";
 
 class AppContainer extends Component {
   state = {
@@ -19,25 +20,28 @@ class AppContainer extends Component {
   };
 
   //  Запрос на получение коллекции вакансий
-  async getVacancies() {
+  fetchVacancies = async () => {
+    // Состояние загрузки
+    this.setState({ loading: true });
+
+    // Параметры запроса
+    const url = VACANCIES_URL;
+    const params = { params: { per_page: 50 } };
+
     // Запрос на вакансии
-    const {
-      data: { items }
-    } = await hhReq.get("vacancies", {
-      params: {
-        per_page: 50
-      }
-    });
+    const { items } = await fetchData(url, params);
 
     // Преобразование коллекции
     const vacancyCollection = transformVacancies(items);
 
-    // Запись коллекции вакансий в состояние
+    // Запись коллекции вакансий в состояние, смена состояния загрузки
     this.setState({
+      // Коллекция вакансий
       vacancyCollection: vacancyCollection,
+      // Состсояние загрузки
       loading: false
     });
-  }
+  };
 
   // Получение id активной для просмотра вакансии
   handleActiveVacancy = id => () => {
@@ -46,8 +50,31 @@ class AppContainer extends Component {
     });
   };
 
+  // Поиск вакансий по запросу
+  searchVacancies = async (str, event) => {
+    // Убрать стандартное действие при нажатии ENTER
+    event.preventDefault();
+
+    // Статус загрузки
+    this.setState({
+      loading: true
+    });
+
+    const url = VACANCIES_URL;
+    const params = { params: { per_page: 50, text: str } };
+
+    const { items } = await fetchData(url, params);
+
+    const vacancyCollection = transformVacancies(items);
+
+    this.setState({
+      vacancyCollection: vacancyCollection,
+      loading: false
+    });
+  };
+
   componentDidMount() {
-    this.getVacancies();
+    this.fetchVacancies();
   }
 
   render() {
@@ -67,7 +94,8 @@ class AppContainer extends Component {
             itemsToShow: itemsToShow,
             loading: loading,
             activeVacancyId: activeVacancyId,
-            handleActiveVacancy: this.handleActiveVacancy
+            handleActiveVacancy: this.handleActiveVacancy,
+            searchVacancies: this.searchVacancies
           }}
         >
           <GlobalStyle />

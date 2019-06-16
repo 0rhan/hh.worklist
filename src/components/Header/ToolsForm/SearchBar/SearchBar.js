@@ -1,18 +1,21 @@
-import React, { Component } from "react";
-import { InputBase } from "@material-ui/core";
+import React from "react";
+import { InputBase, Button } from "@material-ui/core";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 
-class SearchBar extends Component {
-  render() {
-    return (
-      <SearchContainer>
-        <StyledSearchIcon />
-        <InputBase placeholder="Поиск" />
-      </SearchContainer>
-    );
-  }
-}
+const SearchBar = props => {
+  const { handleInput, searchVacancies, searchStr } = props;
+
+  return (
+    <SearchContainer>
+      <StyledSearchIcon />
+      <InputBase name="search" placeholder="Поиск" onChange={handleInput} />
+      <Button size="small" onClick={event => searchVacancies(searchStr, event)}>
+        Найти
+      </Button>
+    </SearchContainer>
+  );
+};
 
 export default SearchBar;
 

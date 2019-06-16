@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ShowMore = props => {
   const { showMore, collectionEnd } = props;
-  console.log(collectionEnd);
+  // Пока коллекция не закончилась
   if (!collectionEnd) {
     return (
       <Container>
