@@ -10,7 +10,13 @@ const Content = () => {
   /* Cписок вакансий */
   return (
     <DataConsumer>
-      {({ vacancyCollection, itemsToShow, loading, activeVacancyId }) => {
+      {({
+        vacancyCollection,
+        itemsToShow,
+        loading,
+        activeVacancyId,
+        fetchData
+      }) => {
         // Отображать загрузку пока коллекция не будет загружена
 
         // Анимация загрузки
@@ -25,7 +31,7 @@ const Content = () => {
             <Route
               exact
               path="/"
-              render={props => (
+              render={() => (
                 <VacancyListContainer
                   vacancyCollection={vacancyCollection}
                   itemsToShow={itemsToShow}
@@ -35,8 +41,11 @@ const Content = () => {
             {/* Карточка с полной информацией о вакансии */}
             <Route
               path={`/vacancy_id${activeVacancyId}`}
-              render={props => (
-                <FullCardContainer activeVacancyId={activeVacancyId} />
+              render={() => (
+                <FullCardContainer
+                  activeVacancyId={activeVacancyId}
+                  fetchData={fetchData}
+                />
               )}
             />
             {/* "Страница" не найдена */}

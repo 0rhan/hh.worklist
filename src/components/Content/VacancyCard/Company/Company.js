@@ -7,27 +7,24 @@ const Company = props => {
   const { companyName, verification, component, variant } = props;
 
   return (
-    <Container>
+    <>
       {/* Название компании */}
       <StyledTypo component={component} variant={variant}>
         {companyName}
+        {/* Статус верификации компании */}
+        {verification && <StyledCheck fontSize="small" />}
       </StyledTypo>
-      {/* Статус верификации компании */}
-      {verification && <StyledCheck fontSize="small" />}
-    </Container>
+    </>
   );
 };
 
 export default Company;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
 const StyledTypo = styled(Typography)`
   && {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     color: ${props => props.theme.palette.primary.light};
   }
 `;

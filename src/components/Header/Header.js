@@ -4,7 +4,7 @@ import Logo from "./Logo/Logo";
 import ToolsForm from "./ToolsForm/ToolsForm";
 import styled from "styled-components";
 
-const Header = props => {
+const Header = () => {
   return (
     <StyledBar>
       <Toolbar>
