@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/hhworklist/static/js/main.27752d90.chunk.js",
+    "main.js.map": "/hhworklist/static/js/main.27752d90.chunk.js.map",
+    "runtime~main.js": "/hhworklist/static/js/runtime~main.877f889b.js",
+    "runtime~main.js.map": "/hhworklist/static/js/runtime~main.877f889b.js.map",
+    "static/js/2.8978701f.chunk.js": "/hhworklist/static/js/2.8978701f.chunk.js",
+    "static/js/2.8978701f.chunk.js.map": "/hhworklist/static/js/2.8978701f.chunk.js.map",
+    "index.html": "/hhworklist/index.html",
+    "precache-manifest.70ffde36254cd5e37a35d60fdbfef944.js": "/hhworklist/precache-manifest.70ffde36254cd5e37a35d60fdbfef944.js",
+    "service-worker.js": "/hhworklist/service-worker.js"
+  }
+}
