@@ -6,7 +6,7 @@ import theme from "utils/styles/theme/theme";
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
+  <Router basename="/hh.worklist">
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
